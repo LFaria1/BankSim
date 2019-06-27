@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+{{include("pages/head.html")}}
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    {{include("pages/menus.html")}}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Empréstimos
+        </h1>
+
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+
+        <div class="row">
+            <div class=" col-md-12">
+            <!--Error -->
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-ban"></i>Erro</h4>
+              {{ error }}
+            </div>
+            {% endif %}
+            <!--Success-->
+            {% if success %}
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i>Successo</h4>
+              {{ success }}
+            </div>
+            {% endif %}
+          </div>
+          <div class="col-md-12">
+            <div class="box">
+              <div class="box-header with-border">
+                <h3 class="box-title">Empréstimos pendentes</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <table class="table table-bordered table-hover">
+                  <tbody>
+                    <tr>
+                      <th style="width: 10px"></th>
+                      <th>Data início</th>
+                      <th>Data limite</th>
+                      <th>Parcela mensal</th>
+                      <th>Valor total</th>
+                      <th>Valor restante</th>
+                      <th>Taxa mensal</th>
+                      <th width="8%">Ver detalhes</th>
+                    </tr>
+                    {%for loan in loans%}
+                    <tr>
+                      <td>{{loan.id}}</td>
+                      <td>{{loan.startDate}}</td>
+                      <td>
+                        <span>{{loan.endDate}}</span>
+                      </td>
+                      <td><span>{{loan.monthlyInstallment}}</span></td>
+                      <td><span>{{loan.totalValue}}</span></td>
+                      <td><span>{{loan.remainingValue}}</span></td>
+                      <td><span>{{loan.monthlyInterest}} %</span></td>
+                      <td><a href="/loans/{{loan.id}}"><button type="button" class="btn btn-block btn-info">Ver</button>
+                      </td>
+                    </tr>
+                    {%endfor%}
+
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer clearfix">
+                <ul class="pagination pagination-sm no-margin pull-right">
+                  {%for i in range(initPage,endPage)%}
+                  <li class="page-item {%if actualPage == i%} active {%endif%}"><a class="page-link"
+                      href="/transactions/{{i}}">{{i}}</a></li>
+                  {%endfor%}
+                </ul>
+              </div>
+            </div>
+            <!-- /.box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="box card">
+              <div class="card-body">
+                <h5 class="card-title">Novo Empréstimo</h5>
+                <form action="/loans/new-loan" method="POST"  >
+
+                  <div class="form-row">
+                    <div class="col-md-7">
+                      <div class="position-relative form-group"><label 
+                          for="exampleCity">Valor</label>
+                          <input placeholder="R$ 1000,00" name="value" type="text" class="form-control"></div>
+                    </div>
+                    <div class="col-md-5">
+                      <div class="position-relative form-group"><label for="exampleState" class="">Duração</label>
+                        <select name="months"class="form-control">
+                          <option>6 Meses</option>
+                          <option>9 Meses</option>
+                          <option>12 Meses</option>
+                          <option>18 Meses</option>
+                          <option>24 Meses</option>
+                          <option>30 Meses</option>
+                          <option>36 Meses</option>
+                        </select></div>
+                    </div>
+                  </div>
+                  <button type="submit" class="mt-2 btn btn-primary">Calcular</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Create the tabs -->
+      <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      </ul>
+      <!-- Tab panes -->
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+
+  </div>
+  <!-- ./wrapper -->
+  {{include('pages/scripts.html')}}
+</body>
+
+</html>

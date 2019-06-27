@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+{{include("pages/head.html")}}
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    {{include("pages/menus.html")}}
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          Novo empréstimo
+        </h1>
+      </section>
+      <!-- Main content -->
+      <section class="content">
+
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <div class="main-card mb-3 card">
+              <div class="card-body row">
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Valor do empréstimo:
+                  </h5>
+                  <span class="description-text h5">R$ {{value}}</span>
+                </div>
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Valor total:
+                  </h5>
+                  <span class="description-text  h5">R$ {{totalValue}}</span>
+                </div>
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Meses:
+                  </h5>
+                  <span class="description-text  h5">{{months}} Meses</span>
+                </div>
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Parcela Mensal:
+                  </h5>
+                  <span class="description-text  h5">R$ {{monthlyInstallment}}</span>
+                </div>
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Empréstimo efetuado em:
+                  </h5>
+                  <span class="description-text  h5">{{startDate}}</span>
+                </div>
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Data limite:
+                  </h5>
+                  <span class="description-text  h5">{{endDate}}</span>
+                </div>
+                <div class="card col-lg-4" style="border:none; margin-bottom: 30px">
+                  <h5 class="font-weight-bold">
+                    Juros ao mês:
+                  </h5>
+                  <span class="description-text  h5">{{monthlyInterest}} %</span>
+                </div>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+          <div class="col-lg-9">
+
+            <!--Error -->
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-ban"></i>Erro</h4>
+              {{ error }}
+            </div>
+            {% endif %}
+
+            <!--Success-->
+            {% if success %}
+            <div class="alert alert-success alert-dismissible">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+              <h4><i class="icon fa fa-check"></i>Successo</h4>
+              {{ success }}
+            </div>
+            {% endif %}
+            <div class="main-card mb-3 card">
+              <div class="card-body">
+                <h4 class="card-title">Confirmar Empréstimo</h4>
+                <form action="/loans/new-loan/register-loan" method="post">
+                  <div class="form-row">
+                    <div class="col-md-6">
+                      <div class="position-relative form-group"><label for="exampleCity" class="">Email:</label><input
+                          name="email" id="exampleCity" placeholder="email@email.com" type="text" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="position-relative form-group"><label for="" class="">Senha:</label><input
+                          name="password" id="exampleState" type="password" placeholder="Senha" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                    </div>
+                    <button class="mt-2 btn btn-success" style="margin-left:5px; margin-right:20px">Efetuar empréstimo</button>
+
+                </form>
+                <form style="margin-bottom:0" method="get" action="/loans">
+                  <button class="mt-2 btn btn-default">Voltar</button>
+                  </form>
+              </div>
+            </div>
+          </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Create the tabs -->
+      <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      </ul>
+      <!-- Tab panes -->
+    </aside>
+    <!-- /.control-sidebar -->
+    <!-- Add the sidebar's background. This div must be placed
+       immediately after the control sidebar -->
+    <div class="control-sidebar-bg"></div>
+
+  </div>
+  <!-- ./wrapper -->
+  {{include('pages/scripts.html')}}
+</body>
+
+</html>
