@@ -1,27 +1,22 @@
-# Slim Framework 3 Skeleton Application
+# Simulação de operações básicas de um banco (Em andamento)
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+Site que simula de forma simplificada as operações básicas de um banco, como depositar, sacar dinheiro e fazer empréstimos
+O foco deste projeto foi consolidar os conhecimentos em PHP, além de ferramentas relacionadas como Twig e Slim.
+Este projeto foi feito usando AdminLTE como template base.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+## Instalar as dependências
 
-## Install the Application
+Para instalar as dependências execute na pasta root:
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+     composer install
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+E dentro da pasta public:
+	
+	 bower install
+	
+## Informações adicionais
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+* As senhas estão em **clear text**
+* Na pasta root, há o schema do SQL
+* O projeto está em andamento, então existem bugs e interações não previstas.
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
-
-To run the application in development, you can run these commands 
-
-	cd [my-app-name]
-	php composer.phar start
-
-Run this command in the application directory to run the test suite
-
-	php composer.phar test
-
-That's it! Now go build something cool.
